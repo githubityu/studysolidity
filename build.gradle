@@ -1,22 +1,75 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.web3j.solidity:solidity-gradle-plugin:0.3.3"
+        classpath "org.web3j:web3j-gradle-plugin:4.9.0"
+    }
+}
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
     id 'java'
+    id "org.web3j.solidity" version "0.3.3"
+    id "org.web3j" version "4.9.0"
+}
+
+solidity {
+    //BIN, ABI,ASM_JSON
+    outputComponents = ["BIN","ABI"]
+    optimizeRuns = 500
+    optimize = true
 }
 
 group 'com.ityu'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
-    mavenCentral()
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
 }
+
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation('org.web3j:core:4.8.7')
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.6.6'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.5',
+            'org.bouncycastle:bcprov-jdk15on:1.54',
+            'com.lambdaworks:scrypt:1.4.0',
+            'com.squareup:javapoet:1.7.0',
+            'io.reactivex:rxjava:1.2.4',
+            'com.github.jnr:jnr-unixsocket:0.15'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
+
+sourceSets {
+    main {
+        solidity {
+            srcDir {
+                "src/main/resources/compile/"
+            }
+            //output.resourcesDir = file('src/main/resources/out/')
+        }
+    }
+}
+web3j {
+    generatedPackageName = 'com.ityu.{0}'
+    generatedFilesBaseDir = "$buildDir/aa/bb"
+    // excludedContracts = ['Ownable']
+    useNativeJavaTypes = false
+}
+
+
 test {
     useJUnitPlatform()
 }
+
+apply plugin: "org.web3j.solidity"
