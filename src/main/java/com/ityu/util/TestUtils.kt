@@ -29,6 +29,14 @@ fun testGetMatic(address: String) {
     println(client.body?.string() ?: "====")
 }
 
+
+fun testGetRop(address: String) {
+    val toRequestBody = "0x6f9301Df6DF8Ad6B18De4CbA665B9fc09f377219".toRequestBody("application/rawdata".toMediaType())
+    val post = Request.Builder().url("https://faucet.metamask.io/v0/request").post(toRequestBody).build()
+    val client = getOkHttpClient().newCall(post).execute()
+    //0x0000000000000000000000000000000000000000
+    println(client.body?.string() ?: "====")
+}
 fun testGraphql() {
     val apply = getObjectNode().apply {
         put(
