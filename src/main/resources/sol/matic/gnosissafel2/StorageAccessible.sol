@@ -10,6 +10,9 @@ contract StorageAccessible {
      * @param length - the number of words (32 bytes) of data to read
      * @return the bytes that were read.
      */
+
+    //offset 第几个变量
+    //length 几个32 bytes
     function getStorageAt(uint256 offset, uint256 length) public view returns (bytes memory) {
         bytes memory result = new bytes(length * 32);
         for (uint256 index = 0; index < length; index++) {
@@ -33,6 +36,16 @@ contract StorageAccessible {
      * @param targetContract Address of the contract containing the code to execute.
      * @param calldataPayload Calldata that should be sent to the target contract (encoded method name and arguments).
      */
+
+    //0x00000000000000000000000000000000000000000000000000000000000000c8
+    //0xfa79bdf20000000000000000000000000000000000000000000000000000000000000064
+    //0xfa79bdf20000000000000000000000000000000000000000000000000000000000000001
+    //0xfa79bdf2方法名
+    //0000000000000000000000000000000000000000000000000000000000000001 参数
+    //下面是两个参数
+    //0x8e86b12500000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002
+
+
     function simulateAndRevert(address targetContract, bytes memory calldataPayload) external {
         // solhint-disable-next-line no-inline-assembly
         assembly {

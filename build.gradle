@@ -19,7 +19,7 @@ plugins {
 
 solidity {
     //BIN, ABI,ASM_JSON
-    outputComponents = ["BIN","ABI"]
+    outputComponents = ["BIN", "ABI"]
     optimizeRuns = 500
     optimize = true
 }
@@ -33,10 +33,16 @@ repositories {
     maven { url 'https://maven.aliyun.com/repository/public' }
     maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
 }
-
+ext {
+    mapstructVersion = "1.5.0.RC1"
+    lombokVersion = "1.18.20"
+    lombokMapstructBindingVersion = "0.2.0"
+}
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    implementation 'commons-codec:commons-codec:1.15'
     implementation('org.web3j:core:4.8.7')
     implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.6.6'
     implementation 'org.apache.httpcomponents:httpclient:4.5.5',
@@ -47,6 +53,12 @@ dependencies {
             'com.github.jnr:jnr-unixsocket:0.15'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}", "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+
+
 }
 
 

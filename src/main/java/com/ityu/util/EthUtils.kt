@@ -1,6 +1,8 @@
 package com.ityu.util
 
 
+import org.web3j.abi.DefaultFunctionEncoder
+import org.web3j.abi.TypeEncoder
 import org.web3j.abi.datatypes.DynamicArray
 import org.web3j.abi.datatypes.generated.Uint256
 import org.web3j.crypto.Credentials
@@ -17,8 +19,9 @@ import java.math.BigInteger
 fun getWeb3j(): Web3j {
     //https://kovan.infura.io/v3/212a3359b2bb4684b9b99c9a8a7a771f
     //https://ropsten.infura.io/v3/212a3359b2bb4684b9b99c9a8a7a771f
+    //https://rpc-mumbai.matic.today
     val service = HttpService(
-        "https://ropsten.infura.io/v3/212a3359b2bb4684b9b99c9a8a7a771f", getOkHttpClient2()
+        "https://rpc-mumbai.matic.today", getOkHttpClient2()
     )
     return Web3j.build(service)
 }
@@ -89,3 +92,4 @@ fun getSimpleGasPrice(price: BigInteger): BigInteger {
     }
     return price.multiply(BigDecimal(mul).toBigInteger())
 }
+

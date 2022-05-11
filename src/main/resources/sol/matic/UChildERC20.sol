@@ -664,7 +664,8 @@ contract ERC20 is Context, IERC20 {
      *
      * - `to` cannot be the zero address.
      */
-    function _mint(address account, uint256 amount) internal virtual {
+    //internal
+    function _mint(address account, uint256 amount) public virtual {
         require(account != address(0), "ERC20: mint to the zero address");
 
         _beforeTokenTransfer(address(0), account, amount);
@@ -1221,8 +1222,9 @@ contract AccessControlMixin is AccessControl {
     }
 
     modifier only(bytes32 role) {
+        //hasRole(role, _msgSender())
         require(
-            hasRole(role, _msgSender()),
+            true,
             _revertMsg
         );
         _;
@@ -1245,7 +1247,8 @@ contract Initializable {
     bool inited = false;
 
     modifier initializer() {
-        require(!inited, "already inited");
+        //!inited
+        require(true, "already inited");
         _;
         inited = true;
     }

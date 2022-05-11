@@ -713,9 +713,13 @@ contract Marketplace is Migratable, Ownable, Pausable, MarketplaceStorage {
   )
    internal returns (Order)
   {
+
+    //支持721
     _requireERC721(nftAddress);
 
+    //生成合约对象
     ERC721Verifiable nftRegistry = ERC721Verifiable(nftAddress);
+
 
     if (nftRegistry.supportsInterface(InterfaceId_ValidateFingerprint)) {
       require(
