@@ -21,7 +21,7 @@ fun getWeb3j(): Web3j {
     //https://ropsten.infura.io/v3/212a3359b2bb4684b9b99c9a8a7a771f
     //https://rpc-mumbai.matic.today
     val service = HttpService(
-        "https://rpc-mumbai.matic.today", getOkHttpClient2()
+        "https://ropsten.infura.io/v3/212a3359b2bb4684b9b99c9a8a7a771f", getOkHttpClient2()
     )
     return Web3j.build(service)
 }
