@@ -1,12 +1,12 @@
 package com.ityu.soliditystudy;
 
 
-import com.ityu.models.TestA;
-import com.ityu.models.TestB;
-import com.ityu.models.TestConverter;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.io.FileUtils;
 
 import javax.net.ssl.X509TrustManager;
+import java.io.File;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -15,16 +15,19 @@ public class TestJava {
 
     public static class TrustAllCerts implements X509TrustManager {
         @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+        }
 
         @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+        }
 
         @Override
         public X509Certificate[] getAcceptedIssuers() {
             return new X509Certificate[0];
         }
     }
+
     /***
      * 利用Apache的工具类实现SHA-256加密
      *
@@ -45,10 +48,11 @@ public class TestJava {
     }
 
     public static void main(String[] args) {
-        TestB testB = TestConverter.INSTANCE.fromSource(new TestA(1, "TestA","NameAAA"));
-        TestA testA = TestConverter.INSTANCE.toSource(new TestB(1, "TestB","NameBBB"));
-        System.out.println(testB.getNameB());
-        System.out.println(testA.getNameA());
+//        TestB testB = TestConverter.INSTANCE.fromSource(new TestA(1, "TestA","NameAAA"));
+//        TestA testA = TestConverter.INSTANCE.toSource(new TestB(1, "TestB","NameBBB"));
+//        System.out.println(testB.getNameB());
+//        System.out.println(testA.getNameA());
+
 
     }
 }

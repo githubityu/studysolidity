@@ -164,11 +164,15 @@ contract Kernel is IKernel, KernelStorage, KernelAppIds, KernelNamespaceConstant
 
     // External access to default app id and namespace constants to mimic default getters for constants
     /* solium-disable function-order, mixedcase */
-    function CORE_NAMESPACE() external pure returns (bytes32) { return KERNEL_CORE_NAMESPACE; }
-    function APP_BASES_NAMESPACE() external pure returns (bytes32) { return KERNEL_APP_BASES_NAMESPACE; }
-    function APP_ADDR_NAMESPACE() external pure returns (bytes32) { return KERNEL_APP_ADDR_NAMESPACE; }
-    function KERNEL_APP_ID() external pure returns (bytes32) { return KERNEL_CORE_APP_ID; }
-    function DEFAULT_ACL_APP_ID() external pure returns (bytes32) { return KERNEL_DEFAULT_ACL_APP_ID; }
+    function CORE_NAMESPACE() external pure returns (bytes32) {return KERNEL_CORE_NAMESPACE;}
+
+    function APP_BASES_NAMESPACE() external pure returns (bytes32) {return KERNEL_APP_BASES_NAMESPACE;}
+
+    function APP_ADDR_NAMESPACE() external pure returns (bytes32) {return KERNEL_APP_ADDR_NAMESPACE;}
+
+    function KERNEL_APP_ID() external pure returns (bytes32) {return KERNEL_CORE_APP_ID;}
+
+    function DEFAULT_ACL_APP_ID() external pure returns (bytes32) {return KERNEL_DEFAULT_ACL_APP_ID;}
     /* solium-enable function-order, mixedcase */
 
     /**

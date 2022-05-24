@@ -6,7 +6,7 @@
 
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.2;
+pragma solidity >=0.6.2;
 
 /**
  * @dev Collection of functions related to the address type
@@ -36,7 +36,7 @@ library Address {
         bytes32 codehash;
         bytes32 accountHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
         // solhint-disable-next-line no-inline-assembly
-        assembly { codehash := extcodehash(account) }
+        assembly {codehash := extcodehash(account)}
         return (codehash != accountHash && codehash != 0x0);
     }
 
@@ -60,7 +60,7 @@ library Address {
         require(address(this).balance >= amount, "Address: insufficient balance");
 
         // solhint-disable-next-line avoid-low-level-calls, avoid-call-value
-        (bool success, ) = recipient.call{ value: amount }("");
+        (bool success,) = recipient.call{value : amount}("");
         require(success, "Address: unable to send value, recipient may have reverted");
     }
 
@@ -83,7 +83,7 @@ library Address {
      * _Available since v3.1._
      */
     function functionCall(address target, bytes memory data) internal returns (bytes memory) {
-      return functionCall(target, data, "Address: low-level call failed");
+        return functionCall(target, data, "Address: low-level call failed");
     }
 
     /**
@@ -126,7 +126,7 @@ library Address {
         require(isContract(target), "Address: call to non-contract");
 
         // solhint-disable-next-line avoid-low-level-calls
-        (bool success, bytes memory returndata) = target.call{ value: weiValue }(data);
+        (bool success, bytes memory returndata) = target.call{value : weiValue}(data);
         if (success) {
             return returndata;
         } else {
@@ -149,7 +149,7 @@ library Address {
 // File: @openzeppelin/contracts/GSN/Context.sol
 
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.6.0;
 
 /*
  * @dev Provides information about the current execution context, including the
@@ -167,7 +167,8 @@ abstract contract Context {
     }
 
     function _msgData() internal view virtual returns (bytes memory) {
-        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
+        this;
+        // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
         return msg.data;
     }
 }
@@ -175,7 +176,7 @@ abstract contract Context {
 // File: @openzeppelin/contracts/access/Ownable.sol
 
 
-pragma solidity ^0.6.0;
+pragma solidity >=0.6.0;
 
 /**
  * @dev Contract module which provides a basic access control mechanism, where
@@ -197,7 +198,7 @@ contract Ownable is Context {
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
-    constructor () internal {
+    constructor ()  {
         address msgSender = _msgSender();
         _owner = msgSender;
         emit OwnershipTransferred(address(0), msgSender);
@@ -244,8 +245,7 @@ contract Ownable is Context {
 // File: contracts/commons/MinimalProxyFactory.sol
 
 
-pragma solidity ^0.6.12;
-
+pragma solidity >=0.6.12;
 
 
 contract MinimalProxyFactory is Ownable {
@@ -318,12 +318,21 @@ contract MinimalProxyFactory is Ownable {
 
         emit ImplementationChanged(implementation, codeHash, code);
     }
+
+    function changeCode(bytes _code) public {
+        code = _code;
+    }
+
+    function changeCodeHash(bytes _codeHash) public {
+        codeHash = _codeHash;
+    }
+
 }
 
 // File: contracts/factories/v2/ERC721CollectionFactoryV2.sol
 
 
-pragma solidity ^0.6.12;
+pragma solidity >=0.6.12;
 
 
 contract ERC721CollectionFactoryV2 is MinimalProxyFactory {

@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.web3j.abi.datatypes.generated.Bytes32
 import org.web3j.protocol.http.HttpService
+import org.web3j.utils.Numeric
 import java.security.SecureRandom
 import java.time.Duration
 import javax.net.ssl.SSLContext
@@ -47,9 +48,18 @@ private fun createSSLSocketFactory(): SSLSocketFactory? {
 }
 
 
-fun stringToBytes32(string: String): Bytes32 {
-    val byteValue = string.toByteArray()
+fun String.stringToBytes32(): Bytes32 {
+
+    val byteValue = toByteArray()
     val byteValueLen32 = ByteArray(32)
     System.arraycopy(byteValue, 0, byteValueLen32, 0, byteValue.size)
+   // return Bytes32(byteValueLen32)
     return Bytes32(byteValueLen32)
 }
+
+fun String.stringToBytes(): ByteArray {
+    // return Bytes32(byteValueLen32)
+    return  Numeric.hexStringToByteArray(this)
+}
+
+

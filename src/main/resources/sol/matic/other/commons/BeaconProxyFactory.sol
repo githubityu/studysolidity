@@ -86,3 +86,4 @@ contract BeaconProxyFactory {
         emit ImplementationSet(implementation, codeHash, code);
     }
 }
+

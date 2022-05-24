@@ -1,11 +1,14 @@
 package com.ityu.util
 
 
-import org.web3j.abi.DefaultFunctionEncoder
-import org.web3j.abi.TypeEncoder
-import org.web3j.abi.datatypes.DynamicArray
+import org.web3j.abi.FunctionEncoder
+import org.web3j.abi.FunctionReturnDecoder
+import org.web3j.abi.TypeReference
+import org.web3j.abi.datatypes.*
+import org.web3j.abi.datatypes.Function
 import org.web3j.abi.datatypes.generated.Uint256
 import org.web3j.crypto.Credentials
+import org.web3j.crypto.Hash
 import org.web3j.crypto.RawTransaction
 import org.web3j.crypto.TransactionEncoder
 import org.web3j.protocol.Web3j
@@ -43,11 +46,11 @@ fun toDynamicArray(array: MutableList<Uint256>): DynamicArray<Uint256> {
 }
 
 
-fun getTx(){
+fun getTx() {
     val ethGetTransactionByHash =
         getWeb3j().ethGetTransactionByHash("0x29e2023bfc9b86a0bdef9ebebcdf1ce714b1762adc6334b1d0ac5f52475b5099 ").send()
 
-   // val nonce = ethGetTransactionByHash.transaction.get().nonce
+    // val nonce = ethGetTransactionByHash.transaction.get().nonce
 
 
     print("nonce:${ethGetTransactionByHash}")
@@ -62,7 +65,8 @@ fun replaceNonce(privateKey: String, nonce: String, to: String): String {
         gasPrice,
         gasLimit,
         to,
-        BigInteger.ZERO
+        //BigInteger.ZERO
+        BigInteger("5").multiply(BigInteger.TEN.pow(18))
     )
     val signMessage = TransactionEncoder.signMessage(rawTransaction, credentials)
     val hexValue = Numeric.toHexString(signMessage)
@@ -92,4 +96,40 @@ fun getSimpleGasPrice(price: BigInteger): BigInteger {
     }
     return price.multiply(BigDecimal(mul).toBigInteger())
 }
+
+
+fun encode(function: Function): String? {
+    return FunctionEncoder.encode(function)
+}
+
+fun sha3(method:String): String {
+    val input = method.toByteArray()
+    val hash = Hash.sha3(input)
+    return Numeric.toHexString(hash)
+}
+
+fun getMethodHex(){
+    val methodSignature = "Transfer(address,address,uint256)"
+    sha3(methodSignature).substring(0,10)
+}
+private val revertReasonType = listOf(
+    TypeReference.create(AbiTypes.getType("address") as Class<Type<*>>),
+    TypeReference.create(AbiTypes.getType("uint256") as Class<Type<*>>),
+    TypeReference.create(AbiTypes.getType("address") as Class<Type<*>>),
+    TypeReference.create(AbiTypes.getType("bytes") as Class<Type<*>>),
+    TypeReference.create(AbiTypes.getType("address") as Class<Type<*>>),
+    TypeReference.create(AbiTypes.getType("address") as Class<Type<*>>),
+    TypeReference.create(AbiTypes.getType("uint256") as Class<Type<*>>),
+    TypeReference.create(AbiTypes.getType("address") as Class<Type<*>>),
+)
+fun getReturns(raw:String){
+    val decode = FunctionReturnDecoder.decode(raw, revertReasonType)
+    decode.forEach {
+        val decodedRevertReason = it
+        println(decodedRevertReason.value)
+    }
+
+}
+
+
 

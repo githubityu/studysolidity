@@ -4,9 +4,9 @@ pragma solidity ^0.4.15;
 
 
 interface AbstractENS {
-    function owner(bytes32 _node) public constant returns (address);
-    function resolver(bytes32 _node) public constant returns (address);
-    function ttl(bytes32 _node) public constant returns (uint64);
+    function owner(bytes32 _node) public view returns (address);
+    function resolver(bytes32 _node) public view returns (address);
+    function ttl(bytes32 _node) public view returns (uint64);
     function setOwner(bytes32 _node, address _owner) public;
     function setSubnodeOwner(bytes32 _node, bytes32 label, address _owner) public;
     function setResolver(bytes32 _node, address _resolver) public;

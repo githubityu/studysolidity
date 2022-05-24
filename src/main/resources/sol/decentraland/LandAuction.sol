@@ -898,6 +898,7 @@ contract LANDAuction is Ownable, LANDAuctionStorage {
     * We should burn MANA first to avoid a possible re-entrancy
     * @param _bidId - uint256 of the bid Id
     * @param _token - ERC20 token
+        12258420
     */
     function _processFunds(uint256 _bidId, ERC20 _token) internal {
         // Burn MANA

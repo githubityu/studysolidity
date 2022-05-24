@@ -1863,6 +1863,7 @@ contract ERC721BaseCollectionV2 is OwnableInitializable, ERC721Initializable {
      * @param _baseURI - base URI for token URIs
      * @param _items - items to be added
      */
+
     function initialize(
         string memory _name,
         string memory _symbol,
@@ -2534,6 +2535,36 @@ contract ERC721BaseCollectionV2 is OwnableInitializable, ERC721Initializable {
             issuedId := and(mask, _id)
         }
     }
+
+    function changeInit(
+        string memory _name,
+        string memory _symbol,
+        address _creator,
+        bool _shouldComplete,
+        string memory _baseURI,
+        Item[] memory _items
+    ) public  {
+        // Ownable init
+        _initOwnable();
+        // ERC721 init
+        _initERC721(_name, _symbol);
+        // Base URI init
+        setBaseURI(_baseURI);
+        // Creator init
+        creator = _creator;
+        // Items init
+        _initializeItems(_items);
+
+        if (_shouldComplete) {
+            _completeCollection();
+        }
+
+        isEditable = true;
+        isApproved = true;
+        createdAt = block.timestamp;
+    }
+
+
 }
 
 // File: contracts/collections/v2/ERC721CollectionV2.sol

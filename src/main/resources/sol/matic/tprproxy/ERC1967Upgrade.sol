@@ -132,7 +132,7 @@ abstract contract ERC1967Upgrade {
     /**
      * @dev Returns the current admin.
      */
-    function _getAdmin() internal view returns (address) {
+    function _getAdmin() public view returns (address) {
         return StorageSlot.getAddressSlot(_ADMIN_SLOT).value;
     }
 

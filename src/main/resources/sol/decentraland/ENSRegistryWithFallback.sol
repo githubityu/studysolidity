@@ -200,7 +200,7 @@ contract ENSRegistry is ENS {
         return operators[owner][operator];
     }
 
-    function _setOwner(bytes32 node, address owner) internal {
+    function _setOwner(bytes32 node, address owner) public {
         records[node].owner = owner;
     }
 
@@ -276,7 +276,7 @@ contract ENSRegistryWithFallback is ENSRegistry {
         return super.ttl(node);
     }
 
-    function _setOwner(bytes32 node, address owner) internal {
+    function _setOwner(bytes32 node, address owner) public {
         address addr = owner;
         if (addr == address(0x0)) {
             addr = address(this);

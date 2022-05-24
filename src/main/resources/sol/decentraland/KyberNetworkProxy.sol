@@ -4,7 +4,7 @@
 
 // File: contracts/sol6/IERC20.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 interface IERC20 {
@@ -37,7 +37,7 @@ abstract contract ERC20 is IERC20 {
 
 // File: contracts/sol6/utils/PermissionGroupsNoModifiers.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 contract PermissionGroupsNoModifiers {
@@ -159,7 +159,7 @@ contract PermissionGroupsNoModifiers {
 
 // File: contracts/sol6/utils/WithdrawableNoModifiers.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -193,7 +193,7 @@ contract WithdrawableNoModifiers is PermissionGroupsNoModifiers {
 
 // File: contracts/sol6/utils/Utils5.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -346,7 +346,7 @@ contract Utils5 {
 
 // File: contracts/sol6/utils/zeppelin/SafeMath.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 /**
  * @dev Wrappers over Solidity's arithmetic operations with added overflow
@@ -506,7 +506,7 @@ library SafeMath {
 
 // File: contracts/sol6/utils/zeppelin/Address.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 /**
  * @dev Collection of functions related to the address type
@@ -567,7 +567,7 @@ library Address {
 
 // File: contracts/sol6/utils/zeppelin/SafeERC20.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -644,7 +644,7 @@ library SafeERC20 {
 
 // File: contracts/sol6/IKyberNetwork.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -691,28 +691,28 @@ interface IKyberNetwork {
         uint256 platformFeeBps,
         bytes calldata hint
     )
-        external
-        view
-        returns (
-            uint256 expectedRateAfterNetworkFee,
-            uint256 expectedRateAfterAllFees
-        );
+    external
+    view
+    returns (
+        uint256 expectedRateAfterNetworkFee,
+        uint256 expectedRateAfterAllFees
+    );
 
     function getNetworkData()
-        external
-        view
-        returns (
-            uint256 negligibleDiffBps,
-            uint256 networkFeeBps,
-            uint256 expiryTimestamp
-        );
+    external
+    view
+    returns (
+        uint256 negligibleDiffBps,
+        uint256 networkFeeBps,
+        uint256 expiryTimestamp
+    );
 
     function maxGasPrice() external view returns (uint256);
 }
 
 // File: contracts/sol6/IKyberNetworkProxy.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -782,7 +782,7 @@ interface IKyberNetworkProxy {
 
 // File: contracts/sol6/ISimpleKyberProxy.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -798,9 +798,9 @@ interface ISimpleKyberProxy {
     ) external returns (uint256 destAmount);
 
     function swapEtherToToken(IERC20 token, uint256 minConversionRate)
-        external
-        payable
-        returns (uint256 destAmount);
+    external
+    payable
+    returns (uint256 destAmount);
 
     function swapTokenToToken(
         IERC20 src,
@@ -812,7 +812,7 @@ interface ISimpleKyberProxy {
 
 // File: contracts/sol6/IKyberReserve.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -836,7 +836,7 @@ interface IKyberReserve {
 
 // File: contracts/sol6/IKyberHint.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -881,43 +881,43 @@ interface IKyberHint {
     ) external view returns (bytes memory hint);
 
     function parseTokenToEthHint(IERC20 tokenSrc, bytes calldata hint)
-        external
-        view
-        returns (
-            TradeType tokenToEthType,
-            bytes32[] memory tokenToEthReserveIds,
-            IKyberReserve[] memory tokenToEthAddresses,
-            uint256[] memory tokenToEthSplits
-        );
+    external
+    view
+    returns (
+        TradeType tokenToEthType,
+        bytes32[] memory tokenToEthReserveIds,
+        IKyberReserve[] memory tokenToEthAddresses,
+        uint256[] memory tokenToEthSplits
+    );
 
     function parseEthToTokenHint(IERC20 tokenDest, bytes calldata hint)
-        external
-        view
-        returns (
-            TradeType ethToTokenType,
-            bytes32[] memory ethToTokenReserveIds,
-            IKyberReserve[] memory ethToTokenAddresses,
-            uint256[] memory ethToTokenSplits
-        );
+    external
+    view
+    returns (
+        TradeType ethToTokenType,
+        bytes32[] memory ethToTokenReserveIds,
+        IKyberReserve[] memory ethToTokenAddresses,
+        uint256[] memory ethToTokenSplits
+    );
 
     function parseTokenToTokenHint(IERC20 tokenSrc, IERC20 tokenDest, bytes calldata hint)
-        external
-        view
-        returns (
-            TradeType tokenToEthType,
-            bytes32[] memory tokenToEthReserveIds,
-            IKyberReserve[] memory tokenToEthAddresses,
-            uint256[] memory tokenToEthSplits,
-            TradeType ethToTokenType,
-            bytes32[] memory ethToTokenReserveIds,
-            IKyberReserve[] memory ethToTokenAddresses,
-            uint256[] memory ethToTokenSplits
-        );
+    external
+    view
+    returns (
+        TradeType tokenToEthType,
+        bytes32[] memory tokenToEthReserveIds,
+        IKyberReserve[] memory tokenToEthAddresses,
+        uint256[] memory tokenToEthSplits,
+        TradeType ethToTokenType,
+        bytes32[] memory ethToTokenReserveIds,
+        IKyberReserve[] memory ethToTokenAddresses,
+        uint256[] memory ethToTokenSplits
+    );
 }
 
 // File: contracts/sol6/KyberNetworkProxy.sol
 
-pragma solidity 0.6.6;
+pragma solidity ^0.6.6;
 
 
 
@@ -936,10 +936,10 @@ pragma solidity 0.6.6;
  *   - Has some checks in place to safeguard takers
  */
 contract KyberNetworkProxy is
-    IKyberNetworkProxy,
-    ISimpleKyberProxy,
-    WithdrawableNoModifiers,
-    Utils5
+IKyberNetworkProxy,
+ISimpleKyberProxy,
+WithdrawableNoModifiers,
+Utils5
 {
     using SafeERC20 for IERC20;
 
@@ -976,17 +976,17 @@ contract KyberNetworkProxy is
         bytes memory hint;
 
         return
-            doTrade(
-                src,
-                srcAmount,
-                dest,
-                destAddress,
-                maxDestAmount,
-                minConversionRate,
-                platformWallet,
-                0,
-                hint
-            );
+        doTrade(
+            src,
+            srcAmount,
+            dest,
+            destAddress,
+            maxDestAmount,
+            minConversionRate,
+            platformWallet,
+            0,
+            hint
+        );
     }
 
     /// @notice Backward compatible function
@@ -1012,17 +1012,17 @@ contract KyberNetworkProxy is
         bytes calldata hint
     ) external payable override returns (uint256) {
         return
-            doTrade(
-                src,
-                srcAmount,
-                dest,
-                destAddress,
-                maxDestAmount,
-                minConversionRate,
-                walletId,
-                0,
-                hint
-            );
+        doTrade(
+            src,
+            srcAmount,
+            dest,
+            destAddress,
+            maxDestAmount,
+            minConversionRate,
+            walletId,
+            0,
+            hint
+        );
     }
 
     /// @notice Use token address ETH_TOKEN_ADDRESS for ether
@@ -1049,17 +1049,17 @@ contract KyberNetworkProxy is
         bytes calldata hint
     ) external payable override returns (uint256 destAmount) {
         return
-            doTrade(
-                src,
-                srcAmount,
-                dest,
-                destAddress,
-                maxDestAmount,
-                minConversionRate,
-                platformWallet,
-                platformFeeBps,
-                hint
-            );
+        doTrade(
+            src,
+            srcAmount,
+            dest,
+            destAddress,
+            maxDestAmount,
+            minConversionRate,
+            platformWallet,
+            platformFeeBps,
+            hint
+        );
     }
 
     /// @dev Trade from src to dest token. Sends dest tokens to msg sender
@@ -1077,17 +1077,17 @@ contract KyberNetworkProxy is
         bytes memory hint;
 
         return
-            doTrade(
-                src,
-                srcAmount,
-                dest,
-                msg.sender,
-                MAX_QTY,
-                minConversionRate,
-                address(0),
-                0,
-                hint
-            );
+        doTrade(
+            src,
+            srcAmount,
+            dest,
+            msg.sender,
+            MAX_QTY,
+            minConversionRate,
+            address(0),
+            0,
+            hint
+        );
     }
 
     /// @dev Trade from eth -> token. Sends token to msg sender
@@ -1095,25 +1095,25 @@ contract KyberNetworkProxy is
     /// @param minConversionRate The minimal conversion rate. If actual rate is lower, trade reverts
     /// @return Amount of actual dest tokens in twei
     function swapEtherToToken(IERC20 token, uint256 minConversionRate)
-        external
-        payable
-        override
-        returns (uint256)
+    external
+    payable
+    override
+    returns (uint256)
     {
         bytes memory hint;
 
         return
-            doTrade(
-                ETH_TOKEN_ADDRESS,
-                msg.value,
-                token,
-                msg.sender,
-                MAX_QTY,
-                minConversionRate,
-                address(0),
-                0,
-                hint
-            );
+        doTrade(
+            ETH_TOKEN_ADDRESS,
+            msg.value,
+            token,
+            msg.sender,
+            MAX_QTY,
+            minConversionRate,
+            address(0),
+            0,
+            hint
+        );
     }
 
     /// @dev Trade from token -> eth. Sends eth to msg sender
@@ -1129,17 +1129,17 @@ contract KyberNetworkProxy is
         bytes memory hint;
 
         return
-            doTrade(
-                token,
-                srcAmount,
-                ETH_TOKEN_ADDRESS,
-                msg.sender,
-                MAX_QTY,
-                minConversionRate,
-                address(0),
-                0,
-                hint
-            );
+        doTrade(
+            token,
+            srcAmount,
+            ETH_TOKEN_ADDRESS,
+            msg.sender,
+            MAX_QTY,
+            minConversionRate,
+            address(0),
+            0,
+            hint
+        );
     }
 
     function setKyberNetwork(IKyberNetwork _kyberNetwork) external {
@@ -1335,7 +1335,7 @@ contract KyberNetworkProxy is
         // what would be the src amount after deducting platformFee
         // not protecting from platform fee
         uint256 srcTokenAmountAfterDeductingFee = (outcome.userDeltaSrcToken *
-            (BPS - platformFeeBps)) / BPS;
+        (BPS - platformFeeBps)) / BPS;
 
         outcome.actualRate = calcRateFromQty(
             srcTokenAmountAfterDeductingFee,

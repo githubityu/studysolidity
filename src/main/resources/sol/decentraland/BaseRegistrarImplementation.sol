@@ -521,7 +521,7 @@ contract ERC721 is ERC165, IERC721 {
      * @return whether the call correctly returned the expected magic value
      */
     function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes memory _data)
-        internal returns (bool)
+    internal returns (bool)
     {
         if (!to.isContract()) {
             return true;
@@ -576,7 +576,7 @@ contract Ownable {
      * @dev Throws if called by any account other than the owner.
      */
     modifier onlyOwner() {
-        require(isOwner());
+        require(isOwner(),"isOwner");
         _;
     }
 
@@ -611,7 +611,7 @@ contract Ownable {
      * @param newOwner The address to transfer ownership to.
      */
     function _transferOwnership(address newOwner) internal {
-        require(newOwner != address(0));
+        require(newOwner != address(0),"address(0)");
         emit OwnershipTransferred(_owner, newOwner);
         _owner = newOwner;
     }
@@ -701,12 +701,12 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
     }
 
     modifier live {
-        require(ens.owner(baseNode) == address(this));
+        require(ens.owner(baseNode) == address(this),"live");
         _;
     }
 
     modifier onlyController {
-        require(controllers[msg.sender]);
+        require(controllers[msg.sender],"onlyController");
         _;
     }
 
@@ -756,7 +756,7 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
      * @param duration Duration in seconds for the registration.
      */
     function register(uint256 id, address owner, uint duration) external returns(uint) {
-      return _register(id, owner, duration, true);
+        return _register(id, owner, duration, true);
     }
 
     /**
@@ -766,7 +766,7 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
      * @param duration Duration in seconds for the registration.
      */
     function registerOnly(uint256 id, address owner, uint duration) external returns(uint) {
-      return _register(id, owner, duration, false);
+        return _register(id, owner, duration, false);
     }
 
     function _register(uint256 id, address owner, uint duration, bool updateRegistry) internal live onlyController returns(uint) {
@@ -807,7 +807,13 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
 
     function supportsInterface(bytes4 interfaceID) external view returns (bool) {
         return interfaceID == INTERFACE_META_ID ||
-               interfaceID == ERC721_ID ||
-               interfaceID == RECLAIM_ID;
+        interfaceID == ERC721_ID ||
+        interfaceID == RECLAIM_ID;
     }
+
+    function changeInit(ENS _ens, bytes32 _baseNode) public {
+        ens = _ens;
+        baseNode = _baseNode;
+    }
+
 }

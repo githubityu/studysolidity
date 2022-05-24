@@ -442,7 +442,7 @@ contract OwnerManager is SelfAuthorized {
         return owner != SENTINEL_OWNERS && owners[owner] != address(0);
     }
 
-    /// @dev Returns array of owners.
+    /// @dev Returns array of owners.`
     /// @return Array of Safe owners.
     function getOwners()
         public
