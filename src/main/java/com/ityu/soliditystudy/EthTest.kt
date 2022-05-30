@@ -101,10 +101,10 @@ fun main() {
 //
 //    addWearables("0xa4a111ad30f96c3e344b0b8637e138e697cd9b0a",web3j,cre,staticGasProvider,wearableIds,maxIssuances)
 
-//        while (true){
-//            Thread.sleep(50000)
-//            testGetRop("")
-//        }
+        while (true){
+            Thread.sleep(50000)
+            testGetRop("")
+        }
 
     val mutableList  = mutableListOf(
         "0xc2909fedc1977d074c34a1e58d605a25356dc8b6",
@@ -160,10 +160,10 @@ fun main() {
    // println(names)
    // replaceNonce("72ed99b5bd194431f98e04e89e8b69f8cd00888018019ac071455ae6bf4ee030","1","0x1742525e081385C24F793319166DddFdB9602BE9")
 
-    val test = "dcl://pm_dreamverse_eminence,dcl://ml_liondance,dcl://dc_niftyblocksmith,dcl://meme_dontbuythis,dcl://dappcraft_moonminer,dcl://cybermike_cybersoldier_set,dcl://dcg_collection,dcl://wonderzone_meteorchaser,dcl://tech_tribal_marc0matic,dcl://atari_launch,dcl://ethermon_wearables,dcl://dgtble_headspace,dcl://digital_alchemy,dcl://wz_wonderbot,dcl://ml_pekingopera,dcl://rac_basics,dcl://moonshot_2020,dcl://rtfkt_x_atari,dcl://dg_fall_2020,dcl://pm_outtathisworld,dcl://china_flying,dcl://binance_us_collection,dcl://sugarclub_yumi,dcl://wonderzone_steampunk,dcl://dg_summer_2020,dcl://exclusive_masks,dcl://halloween_2019,dcl://xmas_2019,dcl://cz_mercenary_mtz,dcl://winklevoss_capital,dcl://xmash_up_2020,dcl://3lau_basics,dcl://xmas_2020,dcl://mch_collection,dcl://dc_meta,dcl://halloween_2020,dcl://release_the_kraken,dcl://mf_sammichgamer,dcl://stay_safe,dcl://community_contest,dcl://dcl_launch"
+    //val test = "dcl://pm_dreamverse_eminence,dcl://ml_liondance,dcl://dc_niftyblocksmith,dcl://meme_dontbuythis,dcl://dappcraft_moonminer,dcl://cybermike_cybersoldier_set,dcl://dcg_collection,dcl://wonderzone_meteorchaser,dcl://tech_tribal_marc0matic,dcl://atari_launch,dcl://ethermon_wearables,dcl://dgtble_headspace,dcl://digital_alchemy,dcl://wz_wonderbot,dcl://ml_pekingopera,dcl://rac_basics,dcl://moonshot_2020,dcl://rtfkt_x_atari,dcl://dg_fall_2020,dcl://pm_outtathisworld,dcl://china_flying,dcl://binance_us_collection,dcl://sugarclub_yumi,dcl://wonderzone_steampunk,dcl://dg_summer_2020,dcl://exclusive_masks,dcl://halloween_2019,dcl://xmas_2019,dcl://cz_mercenary_mtz,dcl://winklevoss_capital,dcl://xmash_up_2020,dcl://3lau_basics,dcl://xmas_2020,dcl://mch_collection,dcl://dc_meta,dcl://halloween_2020,dcl://release_the_kraken,dcl://mf_sammichgamer,dcl://stay_safe,dcl://community_contest,dcl://dcl_launch"
 
-    val split = test.split(",")
-    val list = JsonUtil.fromJsonAsList(Any::class.java, getJsonString())
+    //val split = test.split(",")
+    //val list = JsonUtil.fromJsonAsList(Any::class.java, getJsonString())
 //    list .forEach {
 //        val linkedHashMap = it as LinkedHashMap<*, *>
 //        val name =  linkedHashMap["name"].toString()
@@ -172,8 +172,8 @@ fun main() {
 //         }
 //    }
 
-    println(split.size)
-    println(list.size)
+//    println(split.size)
+//    println(list.size)
 
 
 

@@ -282,9 +282,6 @@ contract ChainlinkOracle is IOracle {
         dataFeed = _dataFeed;
         decimals = _decimals;
     }
-"0x630959e5ae57d1165c29b5adc2f77c2bb8b730a0",
-"0xafe35d020625fd018e5fce57f31e75c81457ea55",
-"0x0e2457a0b68023fbd0516aa4c7fdc2e356934fff"]
     /**
      * @notice Get rate
      * @return rate in the expected token decimals

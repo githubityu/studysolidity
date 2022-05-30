@@ -15,7 +15,7 @@ contract ERC721CollectionFactoryV3 is Ownable, BeaconProxyFactory {
     /**
     * @notice Create the contract
     * @param _owner - contract owner
-    * @param _implementation - contract implementation
+    * @param _implementation - contract implementation  UpgradeableBeacon
     */
     constructor(address _owner, address _implementation) BeaconProxyFactory(_implementation) {
         transferOwnership(_owner);
@@ -28,7 +28,7 @@ contract ERC721CollectionFactoryV3 is Ownable, BeaconProxyFactory {
     * @return addr - address of the contract created
     */
     function createCollection(bytes32 _salt, bytes memory _data) external onlyOwner returns (address addr) {
-        // Deploy a new collection
+        // Deploy a new collection  BeaconProxy
         addr = _createProxy(_salt, _data);
 
         // Transfer ownership to the owner after deployment

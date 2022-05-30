@@ -44,11 +44,14 @@ fun testGetMatic(address: String) {
 
 
 fun testGetRop(address: String) {
-    val toRequestBody = "0x1742525e081385C24F793319166DddFdB9602BE9".toRequestBody("application/rawdata".toMediaType())
-    val post = Request.Builder().url("https://faucet.metamask.io/v0/request").post(toRequestBody).build()
-    val client = getOkHttpClient().newCall(post).execute()
-    //0x0000000000000000000000000000000000000000
-    println(client.body?.string() ?: "====")
+    try {
+        val toRequestBody = "0x6f9301Df6DF8Ad6B18De4CbA665B9fc09f377219".toRequestBody("application/rawdata".toMediaType())
+        val post = Request.Builder().addHeader("X-Forwarded-For", getIp()).url("https://faucet.metamask.io/v0/request").post(toRequestBody).build()
+        val client = getOkHttpClient().newCall(post).execute()
+        //0x0000000000000000000000000000000000000000
+        println(client.body?.string() ?: "====")
+    } catch (e: Exception) {
+    }
 }
 
 fun testGetRinkeby(address: String) {
@@ -260,6 +263,9 @@ fun getJsonString(): String{
     }
 }
 
-data class  A(
-    val name: String
-)
+fun getIp(): String {
+   return "${(10..200).random()}.${(2..255).random()}.${(2..200).random()}.${(1..255).random()}"
+}
+
+
+

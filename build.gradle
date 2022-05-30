@@ -43,6 +43,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     implementation 'commons-codec:commons-codec:1.15'
+    implementation 'commons-io:commons-io:2.11.0'
     implementation('org.web3j:core:4.8.7')
     implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.6.6'
     implementation 'org.apache.httpcomponents:httpclient:4.5.5',
